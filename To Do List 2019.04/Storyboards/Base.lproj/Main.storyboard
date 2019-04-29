@@ -47,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="1989" y="92"/>
         </scene>
-        <!--Title-->
+        <!--Add-->
         <scene sceneID="bJS-sy-4IB">
             <objects>
                 <tableViewController id="Rra-nh-FPU" customClass="ToDoItemViewController" customModule="To_Do_List_2019_04" customModuleProvider="target" sceneMemberID="viewController">
@@ -96,15 +96,53 @@
                                     <outlet property="textField" destination="04j-xd-33d" id="IkB-iq-D8D"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoolCell" id="fq8-bG-foe" customClass="BoolCell" customModule="To_Do_List_2019_04" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fq8-bG-foe" id="O9u-ye-3m8">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujb-D4-LSj">
+                                            <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPT-iC-YsI">
+                                            <rect key="frame" x="20" y="6.5" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="switchToggled:" destination="fq8-bG-foe" eventType="valueChanged" id="ZVK-TS-rN4"/>
+                                            </connections>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dPT-iC-YsI" firstAttribute="leading" secondItem="O9u-ye-3m8" secondAttribute="leadingMargin" id="Btz-TY-CsM"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ujb-D4-LSj" secondAttribute="trailing" id="bt2-8K-8Ep"/>
+                                        <constraint firstItem="Ujb-D4-LSj" firstAttribute="bottom" secondItem="O9u-ye-3m8" secondAttribute="bottomMargin" id="dZF-HO-YwI"/>
+                                        <constraint firstItem="Ujb-D4-LSj" firstAttribute="leading" secondItem="O9u-ye-3m8" secondAttribute="leadingMargin" id="jor-OM-5nw"/>
+                                        <constraint firstItem="Ujb-D4-LSj" firstAttribute="top" secondItem="O9u-ye-3m8" secondAttribute="topMargin" id="kpg-rU-flc"/>
+                                        <constraint firstItem="dPT-iC-YsI" firstAttribute="centerY" secondItem="O9u-ye-3m8" secondAttribute="centerY" id="vx7-y2-fvM"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="Ujb-D4-LSj" id="672-Tc-D2h"/>
+                                    <outlet property="switch" destination="dPT-iC-YsI" id="0mD-TQ-5rj"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Rra-nh-FPU" id="JQL-nS-H4d"/>
                             <outlet property="delegate" destination="Rra-nh-FPU" id="2hB-ms-juK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="qPw-Ko-5vr"/>
+                    <navigationItem key="navigationItem" title="Add" id="qPw-Ko-5vr"/>
+                    <connections>
+                        <segue destination="2QF-SA-EGd" kind="unwind" identifier="UnwindSegue" unwindAction="unwindWithSegue:" id="Ojp-rc-Kb1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wh8-Wh-3Za" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2QF-SA-EGd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2983" y="92"/>
         </scene>

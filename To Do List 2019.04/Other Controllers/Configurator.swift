@@ -15,29 +15,53 @@ class Configurator {
         cell.imageView?.image = todo.image
     }
 
-    func getConfiguredCell(in controller: ToDoItemViewController, forSection section: Int) -> UITableViewCell {
-        let isEditing = controller.isEditing
+    func getCell(in controller: ToDoItemViewController, forSection section: Int) -> UITableViewCell {
         let value = controller.todo.values[section]
         
         if let value = value as? String {
-            let cell = controller.tableView.dequeueReusableCell(withIdentifier: "StringCell")! as! StringCell
-            
-            cell.delegate = controller
-            cell.section = section
-            
-            if isEditing {
-                cell.label.isHidden = true
-                cell.textField.isHidden = false
-                cell.textField.text = value
-            } else {
-                cell.label.isHidden = false
-                cell.label.text = value
-                cell.textField.isHidden = true
-            }
-            
-            return cell
+            return getCell(with: value, in: controller, forSection: section)
+        } else if let value = value as? Bool {
+            return getCell(with: value, in: controller, forSection: section)
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
+    func getCell(with value: String, in controller: ToDoItemViewController, forSection section: Int) -> UITableViewCell {
+        let cell = controller.tableView.dequeueReusableCell(withIdentifier: "StringCell")! as! StringCell
+        
+        cell.delegate = controller
+        cell.section = section
+        
+        if controller.isEditing {
+            cell.label.isHidden = true
+            cell.textField.isHidden = false
+            cell.textField.text = value
+        } else {
+            cell.label.isHidden = false
+            cell.label.text = value
+            cell.textField.isHidden = true
         }
         
-        return UITableViewCell()
+        return cell
+    }
+    
+    func getCell(with value: Bool, in controller: ToDoItemViewController, forSection section: Int) -> UITableViewCell {
+        let cell = controller.tableView.dequeueReusableCell(withIdentifier: "BoolCell")! as! BoolCell
+        
+        cell.delegate = controller
+        cell.section = section
+        
+        if controller.isEditing {
+            cell.label.isHidden = true
+            cell.`switch`.isHidden = false
+            cell.`switch`.isOn = value
+        } else {
+            cell.label.isHidden = false
+            cell.label.text = value ? "On" : "Off"
+            cell.`switch`.isHidden = true
+        }
+        
+        return cell
     }
 }

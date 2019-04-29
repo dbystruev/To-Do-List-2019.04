@@ -11,6 +11,7 @@
 		6909DC2A227223D6001E3445 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6909DC28227223D6001E3445 /* Main.storyboard */; };
 		6909DC2C227223DF001E3445 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6909DC2B227223DF001E3445 /* Assets.xcassets */; };
 		6909DC2F227223DF001E3445 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6909DC2D227223DF001E3445 /* LaunchScreen.storyboard */; };
+		694E577A2277822400776502 /* BoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694E57792277822400776502 /* BoolCell.swift */; };
 		69C25B982272243400A40F29 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C25B972272243400A40F29 /* ToDo.swift */; };
 		69C25B9B2272289500A40F29 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C25B9A2272289500A40F29 /* String+Extension.swift */; };
 		69C25B9E22722C6800A40F29 /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C25B9D22722C6800A40F29 /* ToDoTableViewController.swift */; };
@@ -28,6 +29,7 @@
 		6909DC2B227223DF001E3445 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6909DC2E227223DF001E3445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6909DC30227223DF001E3445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		694E57792277822400776502 /* BoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolCell.swift; sourceTree = "<group>"; };
 		69C25B972272243400A40F29 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		69C25B9A2272289500A40F29 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		69C25B9D22722C6800A40F29 /* ToDoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				69C25B962272241800A40F29 /* Model */,
 				69C25BA122722D4300A40F29 /* Other Controllers */,
 				69C25BA92272343B00A40F29 /* Protocols */,
+				694E577B2277823600776502 /* Storyboards */,
 				69C25BA62272336000A40F29 /* View */,
 				69C25B9C22722C2A00A40F29 /* View Controllers */,
 				6909DC24227223D6001E3445 /* AppDelegate.swift */,
@@ -79,6 +82,15 @@
 				6909DC30227223DF001E3445 /* Info.plist */,
 			);
 			path = "To Do List 2019.04";
+			sourceTree = "<group>";
+		};
+		694E577B2277823600776502 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6909DC28227223D6001E3445 /* Main.storyboard */,
+				6909DC2D227223DF001E3445 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		69C25B962272241800A40F29 /* Model */ = {
@@ -118,8 +130,7 @@
 		69C25BA62272336000A40F29 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6909DC28227223D6001E3445 /* Main.storyboard */,
-				6909DC2D227223DF001E3445 /* LaunchScreen.storyboard */,
+				694E57792277822400776502 /* BoolCell.swift */,
 				69C25BA72272339900A40F29 /* StringCell.swift */,
 			);
 			path = View;
@@ -213,6 +224,7 @@
 				69C25BA522722E7C00A40F29 /* Date+Extension.swift in Sources */,
 				69C25BA322722D6600A40F29 /* Configurator.swift in Sources */,
 				6909DC25227223D6001E3445 /* AppDelegate.swift in Sources */,
+				694E577A2277822400776502 /* BoolCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
