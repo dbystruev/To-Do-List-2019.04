@@ -11,7 +11,12 @@ import UIKit
 class ToDoTableViewController: UITableViewController {
     let configurator = Configurator()
     
-    var todos = [ToDo]()
+    var todosMO = [ToDoMO]() {
+        didSet {
+            print(#line, #function, todosMO.count)
+            DataManager.manager.saveContext()
+        }
+    }
 }
 
 // MARK: - Navigation
@@ -20,23 +25,24 @@ extension ToDoTableViewController {
         guard segue.identifier == "EditSegue" else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         
-        let todo = todos[indexPath.row]
+        let todo = todosMO[indexPath.row]
         let controller = segue.destination as! ToDoItemViewController
         
         controller.navigationItem.title = "Edit"
-        controller.todo = todo
+        controller.todo = ToDo(todo)
     }
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
         guard segue.identifier == "UnwindSegue" else { return }
         let todo = (segue.source as! ToDoItemViewController).todo
+        let todoMO = ToDoMO(todo)
         
         if let selectedIndex = tableView.indexPathForSelectedRow {
-            todos[selectedIndex.row] = todo
+            todosMO[selectedIndex.row] = todoMO
             tableView.reloadRows(at: [selectedIndex], with: .automatic)
         } else {
-            let indexPath = IndexPath(row: todos.count, section: 0)
-            todos.append(todo)
+            let indexPath = IndexPath(row: todosMO.count, section: 0)
+            todosMO.append(todoMO)
             tableView.insertRows(at: [indexPath], with: .automatic)
         }
     }
@@ -46,7 +52,7 @@ extension ToDoTableViewController {
 extension ToDoTableViewController /*: UITableViewDataSource */ {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCell")!
-        let todo = todos[indexPath.row]
+        let todo = todosMO[indexPath.row]
         
         configurator.configure(cell, with: todo)
         
@@ -54,7 +60,7 @@ extension ToDoTableViewController /*: UITableViewDataSource */ {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todos.count
+        return todosMO.count
     }
 }
 
@@ -63,10 +69,7 @@ extension ToDoTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let todos = ToDo.loadData() {
-            self.todos = todos
-        } else {
-            self.todos = ToDo.loadSampleData()
-        }
+        todosMO = ToDoMO.loadData()
+
     }
 }

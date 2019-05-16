@@ -6,6 +6,7 @@
 //  Copyright © 2019 Denis Bystruev. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 @objcMembers class ToDo: NSObject {
@@ -29,6 +30,18 @@ import UIKit
         self.dueDate = dueDate
         self.notes = notes
         self.image = image
+    }
+    
+    convenience init(_ todo: ToDoMO) {
+        let title = todo.title ?? ""
+        let isComplete = todo.isComplete
+        let dueDate = todo.dueDate ?? Date()
+        let notes = todo.notes
+        var image: UIImage? = nil
+        if let imageData = todo.image {
+            image = UIImage(data: imageData)
+        }
+        self.init(title: title, isComplete: isComplete, dueDate: dueDate, notes: notes, image: image)
     }
     
     deinit {
@@ -72,5 +85,28 @@ extension ToDo: NSCopying {
         }
         
         return todo
+    }
+}
+
+// MARK: - ToDoMO
+extension ToDoMO {
+    convenience init(_ todo: ToDo) {
+        let context = DataManager.manager.context
+        self.init(context: context)
+        
+        title = todo.title
+        isComplete = todo.isComplete
+        dueDate = todo.dueDate
+        notes = todo.notes
+        image = todo.image?.pngData()
+    }
+    
+    static func loadData() -> [ToDoMO] {
+        let request: NSFetchRequest<ToDoMO> = ToDoMO.fetchRequest()
+        let context = DataManager.manager.context
+        
+        guard let todos = try? context.fetch(request) else { return [] }
+        
+        return todos
     }
 }
